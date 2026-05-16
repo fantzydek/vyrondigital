@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vyron Digital</title>
+    <title>Vyron Digital - Real-Time Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -248,14 +248,10 @@
 
     <div class="toast-container" id="toastBox"></div>
 
-    <script src="http://panelkuy.jscloud.my.id:2006/socket.io/socket.io.js"></script>
+    <script src="http://37.114.34.219:2006/socket.io/socket.io.js"></script>
     
     <script>
-                // FIX: Deteksi otomatis apakah web dibuka di HTTP atau HTTPS
-        const currentProtocol = window.location.protocol; 
-        
-        // FIX: Pakai protokol yang sama dengan webnya. Kalau web HTTPS, API juga HTTPS
-        const API_BASE_URL = currentProtocol + '//panelkuy.jscloud.my.id:2006/api';
+        const API_BASE_URL = 'http://37.114.34.219/api';
         const API_KEY = 'fp_ao260annzpk1jk9lx';
 
         let currentUser = null; 
@@ -267,13 +263,12 @@
         
         let socket;
         try {
-            // FIX: Socket.io juga harus pakai protokol yang sama
-            const socketUrl = currentProtocol + '//panelkuy.jscloud.my.id:2006';
-            socket = io(socketUrl, { reconnectionAttempts: 3 }); 
+            socket = io('http://37.114.34.219:2006', { reconnectionAttempts: 3 }); 
         } catch(e) {
             console.error("Socket.io failed to load, realtime features disabled.");
             socket = { on: ()=>{}, emit: ()=>{}, connect: ()=>{}, disconnect: ()=>{} };
         }
+
         // ==========================================
         // AUTH SYSTEM
         // ==========================================
