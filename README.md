@@ -1,2 +1,0 @@
-# vyrondigital
-kepo luu
